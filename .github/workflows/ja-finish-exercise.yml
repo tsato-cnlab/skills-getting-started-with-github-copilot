@@ -1,0 +1,39 @@
+name: 演習を完了
+
+on:
+  workflow_call:
+    inputs:
+      issue-url:
+        required: true
+        type: string
+      exercise-title:
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  finish:
+    name: README を完了状態に更新
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Update README
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const readme = '# ' + '${{ inputs.exercise-title }}' + '\n\nおつかれさまでした。この演習は完了しました。\n\n[演習 Issue を開く](' + '${{ inputs.issue-url }}' + ')\n';
+            fs.writeFileSync('README.md', readme);
+
+      - name: Commit README update
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'Mark exercise as finished'
+          file_pattern: README.md

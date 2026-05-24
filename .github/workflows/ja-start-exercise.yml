@@ -1,0 +1,57 @@
+name: 演習を開始
+
+on:
+  workflow_call:
+    inputs:
+      exercise-title:
+        required: true
+        type: string
+      intro-message:
+        required: false
+        type: string
+    outputs:
+      issue-number:
+        description: "作成した演習 Issue の番号"
+        value: ${{ jobs.start.outputs.issue-number }}
+      issue-url:
+        description: "作成した演習 Issue の URL"
+        value: ${{ jobs.start.outputs.issue-url }}
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  start:
+    name: 演習 Issue を作成
+    runs-on: ubuntu-latest
+    outputs:
+      issue-number: ${{ steps.create.outputs.issue-number }}
+      issue-url: ${{ steps.create.outputs.issue-url }}
+    steps:
+      - name: Create exercise issue
+        id: create
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const {owner, repo} = context.repo;
+            const title = '演習: ' + '${{ inputs.exercise-title }}';
+            const body = [
+              '<!-- exercise-toolkit:start -->',
+              '${{ inputs.intro-message }}',
+              '',
+              'この Issue に投稿される手順に沿って演習を進めてください。',
+              '<!-- exercise-toolkit:end -->'
+            ].join('\n');
+            const existing = await github.paginate(github.rest.issues.listForRepo, {
+              owner, repo, state: 'open', per_page: 100,
+            });
+            const found = existing.find((issue) => !issue.pull_request && issue.title === title);
+            if (found) {
+              core.setOutput('issue-number', found.number);
+              core.setOutput('issue-url', found.html_url);
+              return;
+            }
+            const issue = await github.rest.issues.create({owner, repo, title, body});
+            core.setOutput('issue-number', issue.data.number);
+            core.setOutput('issue-url', issue.data.html_url);

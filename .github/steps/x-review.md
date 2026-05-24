@@ -1,22 +1,13 @@
-## Review
+## レビュー: GitHub Copilot 入門
 
-_Congratulations, you've completed this exercise and learned a lot about GitHub Copilot!_
+おつかれさまでした。GitHub Copilot を使いながら、既存コードの理解、バグ修正、UI 改善、テスト追加、Pull request の作成とレビューまで一通り体験しました。
 
-<img src="https://octodex.github.com/images/jetpacktocat.png" alt=celebrate width=200 align=right>
+この演習で扱ったこと:
 
-Here's a recap of the GitHub Copilot features you learned:
+- Copilot Chat の Ask Mode で、リポジトリ構造と実行方法を確認した
+- インライン候補とインラインチャットで、`src/app.py` のバグ修正とデータ追加を行った
+- Agent Mode で、`src/static/app.js` と `src/static/styles.css` にまたがる UI 変更を進めた
+- Plan Agent で、FastAPI のテスト追加を計画して実装した
+- Pull request で Copilot の要約とレビュー補助を試した
 
-- **Ask Mode**: Explored your codebase with Copilot
-- **Inline suggestions**: Completed code with Tab acceptance
-- **Inline Chat**: Generated code and data with Ctrl/Cmd + I
-- **Agent Mode**: Built features autonomously
-- **Plan Agent**: Drafted a plan, answered questions, and started implementation
-- **GitHub integration**: Generated commit messages, PR summaries, and code reviews
-
-### What's next?
-
-- Check out the other [GitHub Skills exercises](https://learn.github.com/skills).
-  - Learn how to [Integrate MCP with Copilot](https://github.com/skills/integrate-mcp-with-copilot) to give Copilot extra capabilities!
-  - Tailor Copilot to your project needs in [Customize your GitHub Copilot Experience](https://github.com/skills/customize-your-github-copilot-experience)
-  - Tackle legacy COBOL code in [Modernize Your Legacy Code with GitHub Copilot](https://github.com/skills/modernize-your-legacy-code-with-github-copilot) exercise
-  - Try GitHub Copilot Coding Agent in the [Expand your team with Copilot](https://github.com/skills/expand-your-team-with-copilot) exercise
+Copilot は強力ですが、最終判断をするのは開発者です。提案された差分を読み、動作確認し、テストを実行してから取り込む習慣を大切にしてください。

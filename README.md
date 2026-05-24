@@ -1,16 +1,9 @@
-# Getting Started with GitHub Copilot
+# GitHub Copilot 入門
 
-<img src="https://octodex.github.com/images/Professortocat_v2.png" align="right" height="200px" />
+GitHub Copilot は、コードの理解、実装、テスト、レビューを手助けしてくれる AI ペアプログラマーです。この演習では、Codespaces 上でサンプルアプリを動かしながら、Copilot Chat、インラインチャット、Agent Mode、Plan Agent、Pull request での Copilot 機能を順番に体験します。
 
-Hey tsato-cnlab!
+この教材は GitHub Skills のハンズオン教材を日本語化したものです。下のボタンから自分用のリポジトリを作成して始めてください。
 
-Mona here. I'm done preparing your exercise. Hope you enjoy! 💚
+[演習を開始する](https://github.com/new?template_owner=tsato-cnlab&template_name=skills-getting-started-with-github-copilot&owner=%40me&name=skills-getting-started-with-github-copilot&description=Exercise:+GitHub+Copilot+%E5%85%A5%E9%96%80&visibility=public)
 
-Remember, it's self-paced so feel free to take a break! ☕️
-
-[![](https://img.shields.io/badge/Go%20to%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/tsato-cnlab/skills-getting-started-with-github-copilot/issues/1)
-
----
-
-&copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
-
+作成したリポジトリで最初の Actions が実行されると、演習用 Issue が作成されます。以降の手順は、その Issue に投稿されるコメントに沿って進めます。

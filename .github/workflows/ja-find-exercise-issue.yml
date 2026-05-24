@@ -1,0 +1,42 @@
+name: 演習 Issue を検索
+
+on:
+  workflow_call:
+    outputs:
+      issue-number:
+        description: "演習 Issue の番号"
+        value: ${{ jobs.find.outputs.issue-number }}
+      issue-url:
+        description: "演習 Issue の URL"
+        value: ${{ jobs.find.outputs.issue-url }}
+
+permissions:
+  issues: read
+
+jobs:
+  find:
+    name: 演習 Issue を検索
+    runs-on: ubuntu-latest
+    outputs:
+      issue-number: ${{ steps.find.outputs.issue-number }}
+      issue-url: ${{ steps.find.outputs.issue-url }}
+    steps:
+      - name: Find exercise issue
+        id: find
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const {owner, repo} = context.repo;
+            const expectedTitle = '演習: GitHub Copilot 入門';
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              state: 'open',
+              per_page: 100,
+            });
+            const issue = issues.find((item) => !item.pull_request && item.title === expectedTitle);
+            if (!issue) {
+              throw new Error(`No exercise issue found with title: ${expectedTitle}`);
+            }
+            core.setOutput('issue-number', issue.number);
+            core.setOutput('issue-url', issue.html_url);

@@ -1,4 +1,4 @@
-name: Step 4
+name: Step 4 - ステップ 4
 
 on:
   push:
@@ -15,11 +15,11 @@ env:
 
 jobs:
   find_exercise:
-    name: Find Exercise Issue
-    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.8.1
+    name: 演習 Issue を検索
+    uses: ./.github/workflows/ja-find-exercise-issue.yml
 
   check_step_work:
-    name: Check step work
+    name: ステップの作業を確認
     runs-on: ubuntu-latest
     needs: [find_exercise]
     env:
@@ -29,13 +29,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
-      - name: Get response templates
-        uses: actions/checkout@v6
-        with:
-          repository: skills/exercise-toolkit
-          path: exercise-toolkit
-          ref: v0.8.1
 
       - name: Find last comment
         id: find-last-comment
@@ -51,10 +44,10 @@ jobs:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           comment-id: ${{ steps.find-last-comment.outputs.comment-id }}
-          file: exercise-toolkit/markdown-templates/step-feedback/checking-work.md
+          file: .github/ja-templates/step-feedback/checking-work.md
           edit-mode: replace
 
-      # START: Check practical exercise
+      # START: 実践作業を確認
 
       - name: Check for pytest keyphrase in requirements.txt
         id: check-for-pytest
@@ -83,23 +76,23 @@ jobs:
           issue-number: ${{ env.ISSUE_NUMBER }}
           comment-id: ${{ steps.find-last-comment.outputs.comment-id }}
           edit-mode: replace
-          file: exercise-toolkit/markdown-templates/step-feedback/step-results-table.md
+          file: .github/ja-templates/step-feedback/step-results-table.md
           vars: |
             step_number: 4
             results_table:
-              - description: "Checked for pytest in requirements.txt"
+              - description: "requirements.txt に pytest があることを確認しました"
                 passed: ${{ steps.check-for-pytest.outcome == 'success' }}
-              - description: "Checked if tests are added in a separate directory"
+              - description: "別ディレクトリに tests が追加されていることを確認しました"
                 passed: ${{ steps.check-tests-dir.outcome == 'success' }}
 
-      # END: Check practical exercise
+      # END: 実践作業を確認
 
-      - name: Fail job if not all checks passed
+      - name: すべての確認が通らなければジョブを失敗させる
         if: contains(steps.*.outcome, 'failure')
         run: exit 1
 
   post_next_step_content:
-    name: Post next step content
+    name: 次のステップを投稿
     needs: [find_exercise, check_step_work]
     runs-on: ubuntu-latest
     env:
@@ -110,19 +103,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Get response templates
-        uses: actions/checkout@v6
-        with:
-          repository: skills/exercise-toolkit
-          path: exercise-toolkit
-          ref: v0.8.1
-
       - name: Create comment - step finished
         uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
-          file: exercise-toolkit/markdown-templates/step-feedback/step-finished-prepare-next-step.md
+          file: .github/ja-templates/step-feedback/step-finished-prepare-next-step.md
           vars: |
             next_step_number: 5
 
@@ -138,11 +124,11 @@ jobs:
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
-          file: exercise-toolkit/markdown-templates/step-feedback/watching-for-progress.md
+          file: .github/ja-templates/step-feedback/watching-for-progress.md
 
       - name: Disable current workflow and enable next one
         run: |
           gh workflow disable "${{github.workflow}}"
-          gh workflow enable "Step 5"
+          gh workflow enable "5-step.yml"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

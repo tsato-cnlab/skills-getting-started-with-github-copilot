@@ -1,42 +1,33 @@
-## Step 5: Using GitHub Copilot within a pull request
+## Step 5: Pull request で仕上げる
 
-Congratulations! You are finished with coding for this exercise (and VS Code). Now it's time to merge our work. :tada: To wrap up, let's learn about two limited-access Copilot features that can speed up our pull requests!
+_Copilot を使って Pull request の説明とレビューも体験します。_
 
-### 📖 Theory: GitHub Copilot for pull requests
+### 作業 1: Pull request を作成する
 
-#### Copilot pull request summaries
+GitHub 上で **Compare & pull request** を開き、次の設定で Pull request を作成します。
 
-Typically, you would review your notes and commit messages then summarize them for your pull request description. This may take some time, especially if commit messages are inconsistent or code is not documented well. Fortunately, Copilot can consider all changes in the pull request and provide the important highlights, and with references too!
+| 項目 | 値 |
+| --- | --- |
+| base | `main` |
+| compare | `accelerate-with-copilot` |
+| title | `生徒のアクティビティ登録システムを改善` |
 
-#### Copilot code review
+説明欄では Copilot の要約機能を試してみましょう。
 
-More eyes on our work is always useful so let's ask Copilot to do a first pass before we do a normal peer review process. Copilot is great at catching common mistakes that are fixed by simple adjustments, but please remember to use it responsibly.
+![Copilot summarize button](https://raw.githubusercontent.com/tsato-cnlab/skills-getting-started-with-github-copilot/main/.github/images/copilot-summarize-button.png)
 
-> [!NOTE]
-> These features are only available on paid plans of **GitHub Copilot**. [[docs]](https://docs.github.com/en/copilot/get-started/plans)
+### 作業 2: Copilot にレビューしてもらう
 
-### :keyboard: Activity: Summarize and review a PR with Copilot
+Pull request の画面で Copilot review を実行します。
 
-Both **Copilot pull request summaries** and **Copilot code review** have limited access, so this activity is mostly optional. If you don't have access, skip the optional steps of this activity.
+![Copilot review button](https://raw.githubusercontent.com/tsato-cnlab/skills-getting-started-with-github-copilot/main/.github/images/copilot-review-button.png)
 
-1. In a web browser, open another tab and navigate to your exercise repository.
+提案や指摘があれば、内容を確認して必要なものだけ反映します。
 
-1. You might notice a **notification banner** suggesting to create a new pull request. Click that or use the **Pull Requests** tab at the top to **create a new pull request**. Please use the following details:
+### 作業 3: Pull request を merge する
 
-   - **base:** `main`
-   - **compare:** `accelerate-with-copilot`
-   - **title:** `Improve student activity registration system`
+確認が終わったら Pull request を merge します。merge されると演習のレビューコメントが投稿されます。
 
-1. (Optional) In the PR description toolbar click the **Copilot** icon and **Summary** action. After a moment, Copilot will add a description based on your changes. :memo:
+### 完了条件
 
-   <img alt="Copilot summarize button" width="450px" src="https://github.com/tsato-cnlab/skills-getting-started-with-github-copilot/blob/main/.github/images/copilot-summarize-button.png?raw=true">
-
-1. (Optional) In the right side information panel at the top, locate the **Reviewers** section and click the **Request** button next to a **Copilot icon**. Wait a moment for Copilot to add a review comment to your pull request!
-
-   <img alt="Copilot review button" width="300px" src="https://github.com/tsato-cnlab/skills-getting-started-with-github-copilot/blob/main/.github/images/copilot-review-button.png?raw=true">
-
-   > 💡 **Tip:** Notice a log entry that Copilot was requested for a review.
-
-1. At the bottom, press the **Merge pull request** button. Nice work! You are all done! :tada:
-
-1. Wait a moment for Mona to check your work, provide feedback, and post a final review of this exercise!
+`accelerate-with-copilot` から `main` への Pull request が merge されると、演習は完了です。

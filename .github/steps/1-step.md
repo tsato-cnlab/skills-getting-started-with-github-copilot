@@ -1,119 +1,78 @@
-## Step 1: Hello Copilot
+## Step 1: Copilot にこんにちは
 
-Welcome to your **"Getting Started with GitHub Copilot"** exercise! :robot:
+_「このリポジトリは何をするもの？」と聞くところから始めましょう。_
 
-In this exercise, you will be using different GitHub Copilot features to work on a website that allows students of Mergington High School to sign up for extracurricular activities. 🎻 ⚽️ ♟️
+### GitHub Copilot とは
 
-<img width="600" alt="screenshot of Mergington High School WebApp" src="https://github.com/tsato-cnlab/skills-getting-started-with-github-copilot/blob/main/.github/images/mergington-high-school-webapp.png?raw=true" />
+GitHub Copilot は、GitHub が提供する AI 搭載のコーディング支援ツールです。この演習では、次の機能を使います。
 
-### 📖 Theory: Getting to know GitHub Copilot
+| 機能 | できること |
+| --- | --- |
+| Copilot Chat | コードベースの説明、質問への回答、実装方針の相談 |
+| インライン候補 | 入力中のコードやコメントから次のコードを提案 |
+| インラインチャット | エディタ内で選択範囲やファイルに対して変更を依頼 |
+| Agent Mode | 複数ファイルにまたがる変更を Copilot に実装させる |
+| Plan Agent | 実装前に計画を作り、段階的に進める |
+| Pull request 連携 | PR の説明作成やレビュー補助 |
 
-<img width="150" align="right" alt="copilot logo" src="https://github.com/tsato-cnlab/skills-getting-started-with-github-copilot/blob/main/.github/images/copilot-logo.png?raw=true" />
+> [!IMPORTANT]
+> この演習を進めるには、GitHub Copilot が利用できるアカウントが必要です。
 
-GitHub Copilot is an AI coding assistant that helps you write code faster and with less effort, allowing you to focus more energy on problem solving and collaboration.
+### 作業 1: Codespace を開く
 
-GitHub Copilot has been proven to increase developer productivity and accelerate the pace of software development. For more information, see [Research: quantifying GitHub Copilot’s impact on developer productivity and happiness in the GitHub blog.](https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/)
+1. このリポジトリ上部の **Code** ボタンを押します。
+1. **Codespaces** タブを開きます。
+1. **Create codespace on main** を選択します。
+1. VS Code のブラウザ版が起動するまで待ちます。
 
-As you work in your IDE, you'll most often interact with GitHub Copilot in the following ways:
+### 作業 2: Copilot 拡張機能を確認する
 
-| Interaction Mode          | 📝 Description                                                                                                                 | 🎯 Best For                                                                                                     |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
-| **⚡ Inline suggestions** | AI-powered code suggestions that appear as you type, offering context-aware completions from single lines to entire functions. | Completion of the current line, sometimes a whole new block of code                                             |
-| **💭 Inline Chat**        | Interactive chat scoped to your current file or selection. Ask questions about specific code blocks.                           | Code explanations, debugging specific functions, targeted improvements                                          |
-| **💬 Ask Mode**           | Optimized for answering questions about your codebase, coding, and general technology concepts.                                | Understanding how code works, brainstorming ideas, asking questions                                             |
-| **🤖 Agent Mode**         | Recommended default mode for most coding tasks: autonomous edits, tool use, and follow-through until the task is done.         | Daily coding tasks, from scoped fixes to larger multi-file implementation work                                   |
-| **🧭 Plan Agent**         | Optimized for drafting a plan and asking clarifying questions before any code changes are made.                                | When you want a reviewed plan first, then hand off to implementation                                            |
+1. 左側の **Extensions** ビューを開きます。
+1. `GitHub Copilot` と `GitHub Copilot Chat` が有効になっていることを確認します。
+1. `Python` 拡張機能も有効になっていることを確認します。
 
-As you work, you'll find GitHub Copilot can help out in several places across the `github.com` website and in your favorite coding environments such as VS Code, Jet Brains, and Xcode!
+![GitHub Copilot extension](https://raw.githubusercontent.com/tsato-cnlab/skills-getting-started-with-github-copilot/main/.github/images/copilot-extension-vscode.png)
 
-For today's coding though, we will practice with VS Code in a pre-configured development environment known as a [GitHub Codespace](https://github.com/features/codespaces).
+![Python extension](https://raw.githubusercontent.com/tsato-cnlab/skills-getting-started-with-github-copilot/main/.github/images/python-extension-vscode.png)
 
-> [!TIP]
-> You can learn more about current and upcoming features in the [GitHub Copilot Features](https://docs.github.com/en/copilot/about-github-copilot/github-copilot-features) documentation.
+### 作業 3: Copilot Chat でプロジェクトを理解する
 
-### :keyboard: Activity: Get a project intro from Copilot Chat
+1. VS Code 左側の Copilot Chat アイコンを開きます。
+1. モードが **Ask** になっていることを確認します。
 
-Let's start up our development environment, use copilot to learn a bit about the project, and then give it a test run.
+![Ask mode selection](https://raw.githubusercontent.com/tsato-cnlab/skills-getting-started-with-github-copilot/main/.github/images/ask-mode-selection.png)
 
-1. Use the below button to open the **Create Codespace** page in a new tab. Use the default configuration.
+チャットに次のように入力して、プロジェクトの構造と実行方法を確認します。
 
-   [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/{{full_repo_name}}?quickstart=1)
+```text
+このプロジェクトの構成を簡潔に説明してください。
+実行するには何をすればよいですか？
+```
 
-1. Confirm the **Repository** field is your copy of the exercise, not the original, then click the green **Create Codespace** button.
-   - ✅ Your copy: `/{{full_repo_name}}`
-   - ❌ Original: `/skills/getting-started-with-github-copilot`
+### 作業 4: アプリを起動する
 
-1. Wait a moment for Visual Studio Code to load in your browser.
+Copilot の説明に従ってアプリを起動します。通常はターミナルで次を実行します。
 
-1. In the left sidebar, click the extensions tab and verify that the `GitHub Copilot` and `Python` extensions are installed and enabled.
+```bash
+python -m uvicorn src.app:app --reload --host 0.0.0.0 --port 8000
+```
 
-   <img width="350" alt="copilot extension for VS Code" src="https://github.com/tsato-cnlab/skills-getting-started-with-github-copilot/blob/main/.github/images/copilot-extension-vscode.png?raw=true" />
+ポート `8000` の通知が出たら、ブラウザで開いてアプリを確認します。
 
-   <img width="350" alt="python extension for VS Code" src="https://github.com/tsato-cnlab/skills-getting-started-with-github-copilot/blob/main/.github/images/python-extension-vscode.png?raw=true" />
+![Open in browser icon](https://raw.githubusercontent.com/tsato-cnlab/skills-getting-started-with-github-copilot/main/.github/images/open-in-browser-icon.png)
 
-1. At the top of VS Code, locate and click the **Toggle Chat icon** to open a Copilot Chat side panel.
+![Mergington High School webapp](https://raw.githubusercontent.com/tsato-cnlab/skills-getting-started-with-github-copilot/main/.github/images/mergington-high-school-webapp.png)
 
-   <img width="150" alt="image" src="https://github.com/tsato-cnlab/skills-getting-started-with-github-copilot/blob/main/.github/images/toggle-chat-icon.png?raw=true" />
+### 作業 5: ブランチを作成する
 
-   > 🪧 **Note:** If this is your first time using GitHub Copilot, you will need to accept the usage terms to continue.
+次の作業からは `accelerate-with-copilot` ブランチで進めます。ターミナルのインラインチャットを開き、Copilot に次のように依頼してみましょう。
 
-1. Make sure you are in **Ask Mode** for our first interaction
+```text
+Copilot、"accelerate-with-copilot" という新しい Git ブランチを作成して公開するにはどうすればよいですか？
+```
 
-   <img width="350" alt="screenshot showing Ask Mode selection in Copilot Chat" src="https://github.com/tsato-cnlab/skills-getting-started-with-github-copilot/blob/main/.github/images/ask-mode-selection.png?raw=true" />
+Copilot の提案に従って、ブランチを作成してリモートへ push してください。ブランチ名は必ず `accelerate-with-copilot` にします。
 
-1. Enter the below prompt to ask Copilot to introduce you to the project.
+### 完了条件
 
-   > ![Static Badge](https://img.shields.io/badge/-Prompt-text?style=social&logo=github%20copilot)
-   >
-   > ```prompt
-   > Please briefly explain the structure of this project.
-   > What should I do to run it?
-   > ```
-
-   > 🪧 **Note:** It is not necessary to follow Copilot's recommended instructions. We have already prepared the environment for you.
-
-1. Now that we know a bit more about the project, let's actually try running it! In the left sidebar, select the `Run and Debug` tab and then press the **Start Debugging** icon.
-
-   <img width="300" alt="image" src="https://github.com/tsato-cnlab/skills-getting-started-with-github-copilot/blob/main/.github/images/run-and-debug-tab.png?raw=true" />
-
-1. We want to see our webpage running in a browser, so let's find the url and port. If it isn't visible, expand the lower panel and select the **Ports** tab.
-
-1. In the list, find port `8000` and the related link. Hover over the link and select the **Open in browser** icon.
-
-   ![image](https://github.com/tsato-cnlab/skills-getting-started-with-github-copilot/blob/main/.github/images/open-in-browser-icon.png?raw=true)
-
-### :keyboard: Activity: Use Copilot to help remember a terminal command 🙋
-
-Great work! Now that we are familiar with the app and we know it works, let's ask copilot for help starting a branch so we can do some customizing.
-
-1. In VS Code's bottom panel, select the **Terminal** tab and on the right side click the plus `+` sign to create a new terminal window.
-
-   > 🪧 **Note:** This will avoid stopping the existing debug session that is hosting our web application service.
-
-1. Within the new terminal window use the keyboard shortcut `Ctrl + I` (windows) or `Cmd + I` (mac) to bring up **Copilot's Terminal Inline Chat**.
-
-1. Let's ask Copilot to help us remember a command we have forgotten: creating a branch and publishing it.
-
-   > ![Static Badge](https://img.shields.io/badge/-Prompt-text?style=social&logo=github%20copilot)
-   >
-   > ```prompt
-   > Hey copilot, how can I create and publish a new Git branch called "accelerate-with-copilot"?
-   > ```
-
-   > 💡 **Tip:** If Copilot doesn't give you quite what you want, you can always continue explaining what you need. Copilot will remember the conversation history for follow-up responses.
-
-1. Press the `Run` button to let Copilot insert the terminal command for us. No need to copy and paste!
-
-1. After a moment, look in the VS Code lower status bar, on the left, to see the active branch. It should now say `accelerate-with-copilot`. If so, you are all done with this step!
-
-1. Now that your branch is pushed to GitHub, Mona should already be busy checking your work. Give her a moment and keep watch in the comments. You will see her respond with progress info and the next lesson.
-
-<details>
-<summary>Having trouble? 🤷</summary><br/>
-
-If you don't get feedback, here are some things to check:
-
-- Make sure your created the branch with the exact name `accelerate-with-copilot`. No prefixes or suffixes.
-- Make sure the branch was indeed published to your repository.
-
-</details>
+`accelerate-with-copilot` ブランチを作成して push すると、次のステップが自動で投稿されます。

@@ -1,4 +1,4 @@
-name: Step 5
+name: Step 5 - ステップ 5
 
 on:
   pull_request:
@@ -17,11 +17,11 @@ env:
 
 jobs:
   find_exercise:
-    name: Find Exercise Issue
-    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.8.1
+    name: 演習 Issue を検索
+    uses: ./.github/workflows/ja-find-exercise-issue.yml
 
   post_review_content:
-    name: Post review content
+    name: レビューを投稿
     needs: [find_exercise]
     runs-on: ubuntu-latest
     env:
@@ -32,19 +32,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Get response templates
-        uses: actions/checkout@v5
-        with:
-          repository: skills/exercise-toolkit
-          path: exercise-toolkit
-          ref: v0.8.1
-
       - name: Create comment - step finished - final review next
         uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
-          file: exercise-toolkit/markdown-templates/step-feedback/lesson-review.md
+          file: .github/ja-templates/step-feedback/lesson-review.md
 
       - name: Create comment - add review content
         uses: GrantBirki/comment@v2.1.1
@@ -59,9 +52,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   finish_exercise:
-    name: Finish Exercise
+    name: 演習を完了
     needs: [find_exercise, post_review_content]
-    uses: skills/exercise-toolkit/.github/workflows/finish-exercise.yml@v0.8.1
+    uses: ./.github/workflows/ja-finish-exercise.yml
     with:
       issue-url: ${{ needs.find_exercise.outputs.issue-url }}
-      exercise-title: "Getting Started with GitHub Copilot"
+      exercise-title: "GitHub Copilot 入門"
